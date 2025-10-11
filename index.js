@@ -885,12 +885,12 @@ if (/Android|iPhone|iPod/i.test(navigator.userAgent)) {
 
 
 
-document.addEventListener("visibilitychange", (event) => {
-  if (document.visibilityState != "visible") {
-    pause();
-  } else if (isMultiplayer()) {
-    resume();
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState !== "visible") {
+    // Pause game when tab is hidden
+    if (typeof pause === "function") pause();
   }
+  // Don't resume manually — GameMaker handles it automatically
 });
 
 
